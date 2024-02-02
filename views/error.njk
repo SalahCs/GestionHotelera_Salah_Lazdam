@@ -1,0 +1,11 @@
+{% extends 'base.njk' %}
+
+{% block contenido %}
+  <h2>Error</h2>
+
+  {% if error %}
+    <p>{{ error }}</p>
+  {% else %}
+    <p>Ocurrió un error inesperado.</p>
+  {% endif %}
+{% endblock %}

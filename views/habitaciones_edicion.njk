@@ -1,0 +1,60 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Nueva Habitación{% endblock %}
+{% block contenido %}
+  <h2 class="text-center">Editar Habitación {{ habitacion.numero }}</h2>
+
+  <form class="mx-auto" style="width: 50%;" action="/habitaciones/editar/{{ habitacion.id }}" method="post" enctype="multipart/form-data">
+
+    {% if errores.errorBase %}
+        <p class="alert alert-danger">{{ errores.errorBase }}</p>
+    {% endif %}
+    
+    <div class="mb-3">
+      <label for="numero_habitacion" class="form-label">Número de Habitación:</label>
+      <input type="number" id="numero_habitacion" class="form-control" name="numero_habitacion" min="1" max="100" value="{{ habitacion.numero }}" required>
+    </div>
+
+    {% if errores.numero %}
+        <p class="alert alert-danger">{{ errores.numero }}</p>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="tipo_habitacion" class="form-label">Tipo de Habitación:</label>
+      <select id="tipo_habitacion" class="form-select" name="tipo_habitacion" required>
+          <option value="individual" selected>Individual</option>
+          <option value="doble">Doble</option>
+          <option value="familiar">Familiar</option>
+          <option value="suite">Suite</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion_habitacion" class="form-label">Descripción de la Habitación:</label>
+      <textarea id="descripcion_habitacion" class="form-control" name="descripcion_habitacion" rows="4"  required>{{ habitacion.descripcion}}</textarea>
+    </div>
+
+    {% if errores.descripcion %}
+        <p class="alert alert-danger">{{ errores.descripcion }}</p>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="precio_noche" class="form-label">Precio por Noche:</label>
+      <input type="number" id="precio_noche" class="form-control" name="precio_noche" step="0.01" value="{{ habitacion.precio }}" required>
+    </div>
+
+    {% if errores.precio %}
+        <p class="alert alert-danger">{{ errores.precio }}</p>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="imagen_habitacion" class="form-label">Imagen de la Habitación (opcional):</label>
+      <input type="file" id="imagen_habitacion" class="form-control" name="imagen_habitacion" accept="image/*">
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Guardar Habitación</button>
+    </div>
+  </form>
+
+{% endblock %}

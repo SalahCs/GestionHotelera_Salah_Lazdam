@@ -1,0 +1,20 @@
+{% extends "base.njk" %}
+
+{% block contenido %}
+  <h2 class="titulo">Alta de la limpieza de la habitación {{ habitacion.numero }}</h2>
+
+  <form class="mx-auto mt-5" style="width: 50%;" action="/limpiezas/{{habitacion.id}}" method="post">
+    <div class="mb-3">
+      <label class="form-label" for="fecha_limpieza">Fecha de la Limpieza:</label>
+      <input class="form-control" type="date" id="fecha_limpieza" name="fecha_limpieza" value="{{anyo}}-{{mes}}-{{dia}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="observaciones">Observaciones:</label>
+      <textarea class="form-select" id="observaciones" name="observaciones" rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit">Guardar Limpieza</button>
+    </div>
+  </form>
+{% endblock %}

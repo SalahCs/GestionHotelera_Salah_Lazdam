@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+{% block titulo %} Listado de habitaciones {% endblock %}
+{% block contenido %}
+    <h1>Limpieza de habitación {{habitacion.numero}}</h1>
+    <br>
+    <div class="container">
+        <div class="row">
+            {% for limpieza in limpiezas %}
+                <div class="alert alert-secondary">
+                    <p>{{limpieza.fechaHora | date("DD/MM/YYYY")}}</p>
+                    <p>
+                        {% if limpieza.observaciones != undefined %}
+                            Observaciones: {{limpieza.observaciones}}
+                        {% else %}
+                            Sin Observaciones
+                        {% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        {% if (session and session.usuario) %}
+            <a href="nueva/{{ habitacion.id }}" class="btn btn-primary">Nueva Limpieza</a>
+        {% endif %}
+    </div>   
+{% endblock %}
